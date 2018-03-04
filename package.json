@@ -4,7 +4,8 @@
   "description": "Investments dashboard app",
   "main": "index.js",
   "scripts": {
-    "prettier": "prettier --write \"./{src,client/src}/**/*.{js,scss}\""
+    "prettier": "prettier --write \"./{src,client/src}/**/*.{js,scss}\"",
+    "lint": "eslint --fix \"./{src,client/src}/**/*.js\""
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,13 @@
     "url": "https://github.com/doug2k1/my-money/issues"
   },
   "homepage": "https://github.com/doug2k1/my-money#readme",
+  "engines": {
+    "node": "9.x.x"
+  },
   "devDependencies": {
+    "eslint": "^4.18.2",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
     "prettier": "^1.11.1"
   }
 }
