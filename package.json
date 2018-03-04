@@ -1,0 +1,23 @@
+{
+  "name": "my-money",
+  "version": "1.0.0",
+  "description": "Investments dashboard app",
+  "main": "index.js",
+  "scripts": {
+    "prettier": "prettier --write \"./{src,client/src}/**/*.{js,scss}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doug2k1/my-money.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/doug2k1/my-money/issues"
+  },
+  "homepage": "https://github.com/doug2k1/my-money#readme",
+  "devDependencies": {
+    "prettier": "^1.11.1"
+  }
+}
