@@ -4,6 +4,7 @@
   "description": "Investments dashboard app",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index",
     "prettier": "prettier --write \"./{src,client/src}/**/*.{js,scss}\"",
     "lint": "eslint --fix \"./{src,client/src}/**/*.js\""
   },
@@ -26,5 +27,8 @@
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-node": "^6.0.1",
     "prettier": "^1.11.1"
+  },
+  "dependencies": {
+    "express": "^4.16.2"
   }
 }
