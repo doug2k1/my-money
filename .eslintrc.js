@@ -4,5 +4,8 @@ module.exports = {
   extends: ['plugin:node/recommended', 'prettier'],
   env: {
     node: true
+  },
+  rules: {
+    'node/no-unpublished-require': 'off'
   }
 };
