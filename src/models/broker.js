@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   var Broker = sequelize.define(
     'Broker',
     {
-      name: DataTypes.STRING
+      name: { type: DataTypes.STRING, allowNull: false }
     },
     {}
   );

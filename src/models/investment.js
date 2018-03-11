@@ -3,12 +3,13 @@ module.exports = (sequelize, DataTypes) => {
   var Investment = sequelize.define(
     'Investment',
     {
-      name: DataTypes.STRING
+      name: { type: DataTypes.STRING, allowNull: false }
     },
     {}
   );
   Investment.associate = function(models) {
     this.belongsTo(models.Broker);
+    this.hasMany(models.Transaction);
   };
   return Investment;
 };
