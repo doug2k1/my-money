@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Broker.associate = function(models) {
-    // associations can be defined here
+    this.hasMany(models.Investment);
   };
   return Broker;
 };
