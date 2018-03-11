@@ -1,10 +1,5 @@
 const path = require('path');
 const express = require('express');
-const { sequelize } = require('./models');
-
-sequelize.authenticate().then(() => {
-  console.log('connected to database');
-});
 
 const app = express();
 
