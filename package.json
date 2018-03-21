@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index",
+    "test": "cross-env NODE_ENV=test mocha --recursive",
+    "test:coverage": "nyc --reporter=html --reporter=text npm run test",
     "prettier": "prettier --write \"./{src,client/src}/**/*.{js,scss}\"",
     "lint": "eslint --fix \"./{src,client/src}/**/*.js\""
   },
@@ -23,15 +25,27 @@
     "node": "9.x.x"
   },
   "devDependencies": {
-    "eslint": "^4.18.2",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "cross-env": "^5.1.4",
+    "eslint": "^4.19.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-node": "^6.0.1",
+    "mocha": "^5.0.4",
+    "nyc": "^11.6.0",
     "prettier": "^1.11.1",
     "sequelize-cli": "^4.0.0"
   },
   "dependencies": {
     "express": "^4.16.2",
     "pg": "^7.4.1",
-    "sequelize": "^4.35.5"
+    "sequelize": "^4.37.3"
+  },
+  "nyc": {
+    "exclude": [
+      "config",
+      "src/models/index.js",
+      "test/**"
+    ]
   }
 }
