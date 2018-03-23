@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-const secret = require('./secret');
 
 module.exports = {
   test: {

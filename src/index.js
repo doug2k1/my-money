@@ -1,3 +1,4 @@
+/* eslint node/no-missing-require: "off" */
 const path = require('path');
 const express = require('express');
 const ForestAdmin = require('forest-express-sequelize');
