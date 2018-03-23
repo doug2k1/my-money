@@ -7,8 +7,11 @@
     "start": "node src/index",
     "test": "cross-env NODE_ENV=test mocha --recursive",
     "test:coverage": "nyc --reporter=html --reporter=text npm run test",
-    "prettier": "prettier --write \"./{src,client/src}/**/*.{js,scss}\"",
-    "lint": "eslint --fix \"./{src,client/src}/**/*.js\""
+    "prettier": "prettier \"./{src,client/src}/**/*.{js,scss}\"",
+    "prettier:check": "npm run prettier -- -l",
+    "prettier:write": "npm run prettier -- --write",
+    "lint": "eslint --fix \"./{src,client/src}/**/*.js\"",
+    "lint:fix": "npm run lint -- --fix"
   },
   "repository": {
     "type": "git",
@@ -43,10 +46,6 @@
     "sequelize": "^4.37.3"
   },
   "nyc": {
-    "exclude": [
-      "config",
-      "src/models/index.js",
-      "test/**"
-    ]
+    "exclude": ["config", "src/models/index.js", "test/**"]
   }
 }
