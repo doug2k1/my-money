@@ -1,6 +1,5 @@
 const expect = require('chai').expect;
 const {
-  sequelize,
   Broker,
   Investment,
   Transaction,

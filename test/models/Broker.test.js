@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const { sequelize, Broker, Investment } = require('../../src/models');
+const { Broker, Investment } = require('../../src/models');
 
 describe('Broker', () => {
   describe('attributes', () => {
