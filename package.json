@@ -1,6 +1,6 @@
 {
   "name": "my-money",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Investments dashboard app",
   "main": "index.js",
   "scripts": {
@@ -46,6 +46,10 @@
     "sequelize": "^4.37.3"
   },
   "nyc": {
-    "exclude": ["config", "src/models/index.js", "test/**"]
+    "exclude": [
+      "config",
+      "src/models/index.js",
+      "test/**"
+    ]
   }
 }
