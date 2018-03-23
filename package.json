@@ -10,7 +10,7 @@
     "prettier": "prettier \"./{src,client/src}/**/*.{js,scss}\"",
     "prettier:check": "npm run prettier -- -l",
     "prettier:write": "npm run prettier -- --write",
-    "lint": "eslint --fix \"./{src,client/src}/**/*.js\"",
+    "lint": "eslint \"./{src,client/src}/**/*.js\"",
     "lint:fix": "npm run lint -- --fix"
   },
   "repository": {

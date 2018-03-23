@@ -1,3 +1,4 @@
+/* eslint node/no-missing-require: "off" */
 const Sequelize = require('sequelize');
 const secret = require('./secret');
 
