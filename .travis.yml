@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "9"
+  - "9.8.0"
 cache:
   directories:
     - "node_modules"
@@ -11,5 +11,5 @@ before_script:
   - psql -c 'create database mymoney_ci_test;' -U postgres
 script:
   - npm run prettier:check
-  - npm run eslint
+  - npm run lint
   - npm run test
