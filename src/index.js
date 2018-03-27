@@ -4,6 +4,7 @@ const express = require('express');
 const ForestAdmin = require('forest-express-sequelize');
 const { sequelize } = require('./models');
 const secret = require('../config/secret');
+const setupGraphQL = require('./setupGraphQL');
 
 const app = express();
 
@@ -16,6 +17,9 @@ app.use(
     sequelize
   })
 );
+
+// graphql
+setupGraphQL(app);
 
 // static files
 app.use(express.static('public'));
