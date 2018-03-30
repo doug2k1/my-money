@@ -1,4 +1,3 @@
-const expect = require('chai').expect;
 const { Investment, Transaction } = require('../../src/models');
 
 describe('Transaction', () => {
@@ -9,20 +8,20 @@ describe('Transaction', () => {
         date: '2018-03-15'
       });
 
-      expect(transaction.get('amount')).to.equal('1.00');
-      expect(transaction.get('date')).to.equal('2018-03-15');
+      expect(transaction.get('amount')).toEqual('1.00');
+      expect(transaction.get('date')).toEqual('2018-03-15');
     });
   });
 
   describe('validations', () => {
-    it('should validate amount', () => {
+    it('should validate amount', async () => {
       const transaction = Transaction.build({ date: '2018-03-15' });
-      expect(transaction.validate()).to.be.rejected;
+      await expect(transaction.validate()).rejects.toThrow();
     });
 
-    it('should validate date', () => {
+    it('should validate date', async () => {
       const transaction = Transaction.build({ amount: 1 });
-      expect(transaction.validate()).to.be.rejected;
+      await expect(transaction.validate()).rejects.toThrow();
     });
   });
 
@@ -37,7 +36,7 @@ describe('Transaction', () => {
         { include: [Investment] }
       );
 
-      expect(transaction.get('Investment').get('name')).to.equal('Inv');
+      expect(transaction.get('Investment').get('name')).toEqual('Inv');
     });
   });
 });

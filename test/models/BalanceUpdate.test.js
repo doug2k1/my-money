@@ -1,4 +1,3 @@
-const expect = require('chai').expect;
 const { Investment, BalanceUpdate } = require('../../src/models');
 
 describe('BalanceUpdate', () => {
@@ -9,20 +8,20 @@ describe('BalanceUpdate', () => {
         date: '2018-03-15'
       });
 
-      expect(balanceUpdate.get('amount')).to.equal('1.00');
-      expect(balanceUpdate.get('date')).to.equal('2018-03-15');
+      expect(balanceUpdate.get('amount')).toEqual('1.00');
+      expect(balanceUpdate.get('date')).toEqual('2018-03-15');
     });
   });
 
   describe('validations', () => {
-    it('should validate amount', () => {
+    it('should validate amount', async () => {
       const balanceUpdate = BalanceUpdate.build({ date: '2018-03-15' });
-      expect(balanceUpdate.validate()).to.be.rejected;
+      await expect(balanceUpdate.validate()).rejects.toThrow();
     });
 
-    it('should validate date', () => {
+    it('should validate date', async () => {
       const balanceUpdate = BalanceUpdate.build({ amount: 1 });
-      expect(balanceUpdate.validate()).to.be.rejected;
+      await expect(balanceUpdate.validate()).rejects.toThrow();
     });
   });
 
@@ -37,7 +36,7 @@ describe('BalanceUpdate', () => {
         { include: [Investment] }
       );
 
-      expect(balanceUpdate.get('Investment').get('name')).to.equal('Inv');
+      expect(balanceUpdate.get('Investment').get('name')).toEqual('Inv');
     });
   });
 });
