@@ -1,18 +1,17 @@
-const expect = require('chai').expect;
 const { Broker, Investment } = require('../../src/models');
 
 describe('Broker', () => {
   describe('attributes', () => {
     it('should have name', async () => {
       const broker = await Broker.create({ name: 'Foo' });
-      expect(broker.get('name')).to.equal('Foo');
+      expect(broker.get('name')).toEqual('Foo');
     });
   });
 
   describe('validations', () => {
-    it('should validate name', () => {
+    it('should validate name', async () => {
       const broker = Broker.build();
-      expect(broker.validate()).to.be.rejected;
+      await expect(broker.validate()).rejects.toThrow();
     });
   });
 
@@ -25,7 +24,7 @@ describe('Broker', () => {
         },
         { include: [Investment] }
       );
-      expect(broker.get('Investments')).to.have.length(2);
+      expect(broker.get('Investments')).toHaveLength(2);
     });
   });
 });

@@ -1,4 +1,3 @@
-const expect = require('chai').expect;
 const {
   Broker,
   Investment,
@@ -10,14 +9,14 @@ describe('Investment', () => {
   describe('attributes', () => {
     it('should have name', async () => {
       const investment = await Investment.create({ name: 'Foo' });
-      expect(investment.get('name')).to.equal('Foo');
+      expect(investment.get('name')).toEqual('Foo');
     });
   });
 
   describe('validations', () => {
-    it('should validate name', () => {
+    it('should validate name', async () => {
       const investment = Investment.build();
-      expect(investment.validate()).to.be.rejected;
+      await expect(investment.validate()).rejects.toThrow();
     });
   });
 
@@ -31,7 +30,7 @@ describe('Investment', () => {
         { include: [Broker] }
       );
 
-      expect(investment.get('Broker').get('name')).to.equal('Broker 1');
+      expect(investment.get('Broker').get('name')).toEqual('Broker 1');
     });
 
     it('should have many Transactions', async () => {
@@ -46,7 +45,7 @@ describe('Investment', () => {
         { include: [Transaction] }
       );
 
-      expect(investment.get('Transactions')).to.have.length(2);
+      expect(investment.get('Transactions')).toHaveLength(2);
     });
 
     it('should have many Balance Updates', async () => {
@@ -61,7 +60,7 @@ describe('Investment', () => {
         { include: [BalanceUpdate] }
       );
 
-      expect(investment.get('BalanceUpdates')).to.have.length(2);
+      expect(investment.get('BalanceUpdates')).toHaveLength(2);
     });
   });
 });
