@@ -1,11 +1,9 @@
-/* eslint node/no-missing-require: "off" */
 const Sequelize = require('sequelize');
-const secret = require('./secret');
 
 module.exports = {
   development: {
     username: 'mymoney',
-    password: secret.DATABASE_PASSWORD,
+    password: process.env.DATABASE_PASSWORD,
     database: 'mymoney',
     host: '127.0.0.1',
     dialect: 'postgres',
@@ -13,7 +11,7 @@ module.exports = {
   },
   test: {
     username: 'mymoney',
-    password: secret.DATABASE_PASSWORD,
+    password: process.env.DATABASE_PASSWORD,
     database: 'mymoney_test',
     host: '127.0.0.1',
     dialect: 'postgres',

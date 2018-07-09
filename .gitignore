@@ -1,5 +1,5 @@
 .vscode
 .nyc_output
+.env
 node_modules
-config/secret.js
 coverage
