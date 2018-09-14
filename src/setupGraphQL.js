@@ -1,30 +1,19 @@
-const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
-const { makeExecutableSchema } = require('graphql-tools');
+const { ApolloServer } = require('apollo-server-express');
 const { importSchema } = require('graphql-import');
 const authMiddleware = require('./middleware/authMiddleware');
 const resolvers = require('./graphql/resolvers');
 
 const setup = app => {
-  const schema = makeExecutableSchema({
+  const path = '/graphql';
+
+  const server = new ApolloServer({
     typeDefs: importSchema('src/graphql/schema.graphql'),
-    resolvers
+    resolvers,
+    context: req => ({ user: req.user })
   });
 
-  // graphql endpoint
-  app.use(
-    '/graphql',
-    authMiddleware(),
-    graphqlExpress(req => {
-      return { schema, context: { user: req.user } };
-    })
-  );
-
-  // graphiql endpoint
-  app.use(
-    '/graphiql',
-    authMiddleware(),
-    graphiqlExpress({ endpointURL: '/graphql' })
-  );
+  app.use('/graphql', authMiddleware);
+  server.applyMiddleware({ app, path });
 };
 
 module.exports = setup;
