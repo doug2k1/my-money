@@ -4,7 +4,8 @@ module.exports = {
   plugins: ['node'],
   extends: ['eslint:recommended', 'plugin:node/recommended', 'prettier'],
   env: {
-    node: true
+    node: true,
+    jest: true
   },
   rules: {
     'no-console': 'off',
