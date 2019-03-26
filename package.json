@@ -50,6 +50,6 @@
     "passport": "^0.4.0",
     "passport-google-oauth20": "^2.0.0",
     "pg": "^7.9.0",
-    "sequelize": "^5.1.1"
+    "sequelize": "^4.43.0"
   }
 }
