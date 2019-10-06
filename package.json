@@ -7,10 +7,10 @@
     "start": "nodemon src/index",
     "test": "cross-env NODE_ENV=test jest",
     "test:coverage": "npm run test -- --coverage",
-    "prettier": "prettier \"./{src,client/src}/**/*.{js,scss}\"",
+    "prettier": "prettier \"./src/**/*.js\"",
     "prettier:check": "npm run prettier -- -l",
     "prettier:write": "npm run prettier -- --write",
-    "lint": "eslint \"./{src,client/src}/**/*.js\"",
+    "lint": "eslint \"./src/**/*.js\"",
     "lint:fix": "npm run lint -- --fix"
   },
   "repository": {
@@ -28,28 +28,28 @@
     "node": "9.x.x"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "cross-env": "^5.1.5",
-    "eslint": "^5.15.3",
-    "eslint-config-prettier": "^4.1.0",
-    "eslint-plugin-node": "^8.0.1",
-    "jest": "^24.5.0",
-    "nodemon": "^1.18.10",
-    "prettier": "^1.16.4",
-    "sequelize-cli": "^5.4.0"
+    "babel-eslint": "^10.0.3",
+    "cross-env": "^6.0.3",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-node": "^10.0.0",
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.3",
+    "prettier": "^1.18.2",
+    "sequelize-cli": "^5.5.1"
   },
   "dependencies": {
-    "apollo-server-express": "^2.4.8",
-    "dotenv": "^7.0.0",
-    "ejs": "^2.6.1",
-    "express": "^4.16.4",
-    "express-session": "^1.15.6",
-    "forest-express-sequelize": "^2.17.2",
-    "graphql": "^14.1.1",
+    "apollo-server-express": "^2.9.5",
+    "dotenv": "^8.1.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "forest-express-sequelize": "^4.0.0",
+    "graphql": "^14.5.8",
     "graphql-import": "^0.7.1",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^2.0.0",
-    "pg": "^7.9.0",
-    "sequelize": "^4.43.0"
+    "pg": "^7.12.1",
+    "sequelize": "^5.19.3"
   }
 }

@@ -18,12 +18,11 @@ const setup = app => {
         callbackURL: `${process.env.SITE_URL}/auth/google/callback`
       },
       (accessToken, refreshToken, profile, done) => {
-        const accountEmail = profile.emails.find(e => e.type === 'account');
+        const accountEmail = profile.emails.find(
+          e => e.value === process.env.GOOGLE_OAUTH_ALLOWED_USER && e.verified
+        );
 
-        if (
-          accountEmail &&
-          accountEmail.value === process.env.GOOGLE_OAUTH_ALLOWED_USER
-        ) {
+        if (accountEmail) {
           return done(null, {
             id: profile.id,
             displayName: profile.displayName,

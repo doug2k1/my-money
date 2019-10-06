@@ -12,7 +12,7 @@
   <h1>My Money</h1>
   <p>
     <% if (user) { %>
-      Logado como: <%= user.displayName %> - <a href="/auth/logout">Sair</a>
+      Logado como: <%= user.displayName %> - <a href="/graphql">GraphQL Playground</a> - <a href="/auth/logout">Sair</a>
     <% } else { %>
       <a href="/auth/google">Login</a>
     <% } %>

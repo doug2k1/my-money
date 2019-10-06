@@ -9,10 +9,13 @@ const setup = app => {
   const server = new ApolloServer({
     typeDefs: importSchema('src/graphql/schema.graphql'),
     resolvers,
-    context: req => ({ user: req.user })
+    playground: { settings: { 'request.credentials': 'include' } },
+    context: ({ req }) => {
+      return { user: req.user };
+    }
   });
 
-  app.use('/graphql', authMiddleware);
+  app.use(path, authMiddleware);
   server.applyMiddleware({ app, path });
 };
 

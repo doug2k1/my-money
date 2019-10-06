@@ -3,15 +3,15 @@ const { Broker, Investment, BalanceUpdate, Transaction } = require('../models');
 
 module.exports = {
   Query: {
-    brokers: (obj, args) => Broker.all(args),
-    broker: (obj, { id }) => Broker.findById(id),
-    investments: (obj, args) => Investment.all(args),
-    investment: (obj, { id }) => Investment.findById(id)
+    brokers: (obj, args) => Broker.findAll(args),
+    broker: (obj, { id }) => Broker.findByPk(id),
+    investments: (obj, args) => Investment.findAll(args),
+    investment: (obj, { id }) => Investment.findByPk(id)
   },
   Investment: {
     broker: obj => Broker.findOne({ where: { id: obj.BrokerId } }),
     balanceUpdates: (obj, args) =>
-      BalanceUpdate.all({ where: { InvestmentId: obj.id }, ...args }),
+      BalanceUpdate.findAll({ where: { InvestmentId: obj.id }, ...args }),
     transactions: obj => Transaction.all({ where: { InvestmentId: obj.id } })
   },
   Broker: {
