@@ -1,13 +1,12 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { StylesProvider } from '@material-ui/core/styles';
 
-const Button = styled.button`
-  border-radius: 3px;
-  padding: 0.25em 1em;
-  margin: 0 1em;
-  background: transparent;
-  color: palevioletred;
-  border: 2px solid palevioletred;
+const StyledH1 = styled.h1`
+  font-size: 30px;
+  text-transform: uppercase;
 `;
 
 type Props = {
@@ -18,22 +17,21 @@ type State = {
   who: string;
 };
 
-class App extends React.Component<Props, State> {
-  state: State = {
-    who: "World"
-  };
+const App: React.FC<Props> = ({ lang }) => {
+  const [who, setWho] = useState('World');
 
-  render() {
-    return (
-      <div>
-        <h1>App component</h1>
-        <p>
-          Hello {this.state.who} in {this.props.lang}!
-        </p>
-        <Button>styled button</Button>
-      </div>
-    );
-  }
-}
+  return (
+    <StylesProvider injectFirst>
+      <CssBaseline />
+      <StyledH1>React App</StyledH1>
+      <p>
+        Hello {who} in {lang}!
+      </p>
+      <Button variant="contained" color="primary">
+        Material Button
+      </Button>
+    </StylesProvider>
+  );
+};
 
 export default App;
