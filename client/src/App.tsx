@@ -13,10 +13,6 @@ type Props = {
   lang: string;
 };
 
-type State = {
-  who: string;
-};
-
 const App: React.FC<Props> = ({ lang }) => {
   const [who, setWho] = useState('World');
 
