@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "webpack --env prod",
-    "test": "jest",
-    "type-check": "tsc --noEmit"
+    "build": "webpack --env prod"
   },
   "keywords": [],
   "author": "",
