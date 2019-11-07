@@ -10,10 +10,10 @@ const StyledH1 = styled.h1`
 `;
 
 type Props = {
-  lang: string;
+  name: string;
 };
 
-const App: React.FC<Props> = ({ lang }) => {
+const App: React.FC<Props> = ({ name }) => {
   const [who, setWho] = useState('World');
 
   return (
@@ -21,7 +21,7 @@ const App: React.FC<Props> = ({ lang }) => {
       <CssBaseline />
       <StyledH1>React App</StyledH1>
       <p>
-        Hello {who} in {lang}!
+        Hello {who}! This is {name}!
       </p>
       <Button variant="contained" color="primary">
         Material Button
