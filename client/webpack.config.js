@@ -1,4 +1,6 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = env => ({
   mode: env === 'prod' ? 'production' : 'development',
@@ -7,7 +9,7 @@ module.exports = env => ({
 
   output: {
     path: path.resolve('dist'),
-    filename: 'bundle.js'
+    filename: '[name].[hash].js'
   },
 
   resolve: {
@@ -25,5 +27,10 @@ module.exports = env => ({
         }
       }
     ]
-  }
+  },
+
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({ template: 'index.html' })
+  ]
 });
