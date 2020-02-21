@@ -29,27 +29,27 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
-    "cross-env": "^6.0.3",
-    "eslint": "^6.5.1",
-    "eslint-config-prettier": "^6.4.0",
-    "eslint-plugin-node": "^10.0.0",
-    "jest": "^24.9.0",
-    "nodemon": "^1.19.3",
-    "prettier": "^1.18.2",
+    "cross-env": "^7.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-node": "^11.0.0",
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
     "sequelize-cli": "^5.5.1"
   },
   "dependencies": {
-    "apollo-server-express": "^2.9.5",
-    "dotenv": "^8.1.0",
-    "ejs": "^2.7.1",
+    "apollo-server-express": "^2.10.1",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
     "express": "^4.17.1",
-    "express-session": "^1.16.2",
-    "forest-express-sequelize": "^4.0.0",
-    "graphql": "^14.5.8",
+    "express-session": "^1.17.0",
+    "forest-express-sequelize": "^5.7.0",
+    "graphql": "^14.6.0",
     "graphql-import": "^0.7.1",
-    "passport": "^0.4.0",
+    "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
-    "pg": "^7.12.1",
-    "sequelize": "^5.19.3"
+    "pg": "^7.18.2",
+    "sequelize": "^5.21.5"
   }
 }
