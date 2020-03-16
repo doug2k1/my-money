@@ -16,6 +16,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import DescriptionIcon from '@material-ui/icons/Description';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+import Link from '@material-ui/core/Link';
 
 const StyledDrawer = styled(Drawer)`
   & .MuiDrawer-paper {
@@ -49,7 +50,12 @@ const App: React.FC<Props> = ({ name }) => {
         <div style={{ width: 250 }}>
           <Divider />
           <List>
-            {/* <ListItemLink to="/" primary="Home" icon={<HomeIcon />} /> */}
+            <ListItem button component={props => <Link href="/" />}>
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Home" />
+            </ListItem>
             <ListItem button>
               <ListItemIcon>
                 <DescriptionIcon />
