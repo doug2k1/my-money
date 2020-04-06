@@ -18,19 +18,21 @@ app.use(
   session({
     secret: process.env.SESSION_KEY,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
   })
 );
 
 // Forest Admin
-app.use(
-  ForestAdmin.init({
-    modelsDir: path.resolve('./src/models'),
-    envSecret: process.env.FOREST_ENV_SECRET,
-    authSecret: process.env.FOREST_AUTH_SECRET,
-    sequelize
-  })
-);
+(async function () {
+  app.use(
+    await ForestAdmin.init({
+      modelsDir: path.resolve('./src/models'),
+      envSecret: process.env.FOREST_ENV_SECRET,
+      authSecret: process.env.FOREST_AUTH_SECRET,
+      sequelize,
+    })
+  );
+})();
 
 // auth
 setupAuth(app);
@@ -44,7 +46,7 @@ app.use(express.static('public'));
 // routes
 app.get('/', (req, res) => {
   res.render('index', {
-    user: req.user
+    user: req.user,
   });
 });
 

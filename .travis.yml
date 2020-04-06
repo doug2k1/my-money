@@ -7,7 +7,7 @@ cache:
 services:
   - postgresql
 before_script:
-  - cp config/database.ci.js config/database.js
+  - cp backend/config/database.ci.js backend/config/database.js
   - psql -c 'create database mymoney_ci_test;' -U postgres
 script:
   - npm run prettier:check

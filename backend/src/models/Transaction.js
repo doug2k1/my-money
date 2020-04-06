@@ -1,15 +1,15 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var BalanceUpdate = sequelize.define(
-    'BalanceUpdate',
+  var Transaction = sequelize.define(
+    'Transaction',
     {
       amount: { type: DataTypes.DECIMAL(16, 2), allowNull: false },
-      date: { type: DataTypes.DATEONLY, allowNull: false }
+      date: { type: DataTypes.DATEONLY, allowNull: false },
     },
     {}
   );
-  BalanceUpdate.associate = function(models) {
+  Transaction.associate = function (models) {
     this.belongsTo(models.Investment);
   };
-  return BalanceUpdate;
+  return Transaction;
 };

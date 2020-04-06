@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {
   StylesProvider,
   createMuiTheme,
-  ThemeProvider
+  ThemeProvider as MuiThemeProvider,
 } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -18,12 +19,12 @@ import Page from './components/Page';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: teal[500]
+      main: teal[500],
     },
     secondary: {
-      main: lime[500]
-    }
-  }
+      main: lime[500],
+    },
+  },
 });
 
 type Props = {
@@ -38,27 +39,29 @@ const App: React.FC<Props> = ({ name }) => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <StylesProvider injectFirst>
-        <CssBaseline />
-        <Router>
-          <AppBar position="static">
-            <Toolbar>
-              <IconButton
-                edge="start"
-                color="inherit"
-                onClick={toggleNav(true)}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6">My Money</Typography>
-            </Toolbar>
-          </AppBar>
-          <MainMenu open={navOpen} onClose={toggleNav(false)} />
-          <Page />
-        </Router>
-      </StylesProvider>
-    </ThemeProvider>
+    <MuiThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <StylesProvider injectFirst>
+          <CssBaseline />
+          <Router>
+            <AppBar position="static">
+              <Toolbar>
+                <IconButton
+                  edge="start"
+                  color="inherit"
+                  onClick={toggleNav(true)}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Typography variant="h6">My Money</Typography>
+              </Toolbar>
+            </AppBar>
+            <MainMenu open={navOpen} onClose={toggleNav(false)} />
+            <Page />
+          </Router>
+        </StylesProvider>
+      </ThemeProvider>
+    </MuiThemeProvider>
   );
 };
 

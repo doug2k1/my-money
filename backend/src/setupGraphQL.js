@@ -3,7 +3,7 @@ const { importSchema } = require('graphql-import');
 const authMiddleware = require('./middleware/authMiddleware');
 const resolvers = require('./graphql/resolvers');
 
-const setup = app => {
+const setup = (app) => {
   const path = '/graphql';
 
   const server = new ApolloServer({
@@ -12,7 +12,7 @@ const setup = app => {
     playground: { settings: { 'request.credentials': 'include' } },
     context: ({ req }) => {
       return { user: req.user };
-    }
+    },
   });
 
   app.use(path, authMiddleware);

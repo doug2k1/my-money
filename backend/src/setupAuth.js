@@ -1,7 +1,7 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
 
-const setup = app => {
+const setup = (app) => {
   passport.serializeUser((user, done) => {
     done(null, user);
   });
@@ -15,18 +15,18 @@ const setup = app => {
       {
         clientID: process.env.GOOGLE_OAUTH_CLIENT_ID,
         clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
-        callbackURL: `${process.env.SITE_URL}/auth/google/callback`
+        callbackURL: `${process.env.SITE_URL}/auth/google/callback`,
       },
       (accessToken, refreshToken, profile, done) => {
         const accountEmail = profile.emails.find(
-          e => e.value === process.env.GOOGLE_OAUTH_ALLOWED_USER && e.verified
+          (e) => e.value === process.env.GOOGLE_OAUTH_ALLOWED_USER && e.verified
         );
 
         if (accountEmail) {
           return done(null, {
             id: profile.id,
             displayName: profile.displayName,
-            photo: profile.photos ? profile.photos[0].value : null
+            photo: profile.photos ? profile.photos[0].value : null,
           });
         }
 
@@ -42,7 +42,7 @@ const setup = app => {
   app.get(
     '/auth/google',
     passport.authenticate('google', {
-      scope: ['profile', 'email']
+      scope: ['profile', 'email'],
     })
   );
 

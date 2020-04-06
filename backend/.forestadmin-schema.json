@@ -435,11 +435,11 @@
   "meta": {
     "database_type": "postgres",
     "liana": "forest-express-sequelize",
-    "liana_version": "5.7.0",
+    "liana_version": "6.0.0",
     "engine": "nodejs",
-    "engine_version": "12.13.1",
+    "engine_version": "12.16.1",
     "framework": "express",
     "framework_version": "^4.17.1",
-    "orm_version": "5.21.5"
+    "orm_version": "5.21.6"
   }
 }
