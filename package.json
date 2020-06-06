@@ -39,7 +39,7 @@
     "sequelize-cli": "^5.5.1"
   },
   "dependencies": {
-    "apollo-server-express": "^2.9.5",
+    "apollo-server-express": "^2.14.2",
     "dotenv": "^8.1.0",
     "ejs": "^2.7.1",
     "express": "^4.17.1",
