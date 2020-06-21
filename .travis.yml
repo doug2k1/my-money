@@ -6,8 +6,9 @@ cache:
     - "node_modules"
 services:
   - postgresql
-before_script:
+before_install:
   - cd backend
+before_script:
   - cp config/database.ci.js config/database.js
   - psql -c 'create database mymoney_ci_test;' -U postgres
 script:
