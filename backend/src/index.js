@@ -1,9 +1,6 @@
 require('dotenv').config();
-const path = require('path');
 const express = require('express');
 const session = require('express-session');
-const ForestAdmin = require('forest-express-sequelize');
-const { sequelize } = require('./models');
 const setupAuth = require('./setupAuth');
 const setupGraphQL = require('./setupGraphQL');
 
@@ -21,18 +18,6 @@ app.use(
     saveUninitialized: false,
   })
 );
-
-// Forest Admin
-(async function () {
-  app.use(
-    await ForestAdmin.init({
-      modelsDir: path.resolve('./src/models'),
-      envSecret: process.env.FOREST_ENV_SECRET,
-      authSecret: process.env.FOREST_AUTH_SECRET,
-      sequelize,
-    })
-  );
-})();
 
 // auth
 setupAuth(app);

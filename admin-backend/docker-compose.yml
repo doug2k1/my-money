@@ -1,0 +1,18 @@
+version: '3.4'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: my_money_demo
+    environment:
+      - APPLICATION_PORT=3310
+      - DATABASE_URL=postgres://mymoney:123456@host.docker.internal:5432/mymoney
+      - DATABASE_SCHEMA=public
+      - DATABASE_SSL=false
+      - FOREST_AUTH_SECRET=a1cb8c8b8e6476d6da0423a8d7377162e4c00f67bb4159aefbc1ad2f2db27e950428199a0d40728a3b75de2453cd8554
+      - FOREST_ENV_SECRET=8a15a380ea434e26f400ae02592752c33a60d94fde8c53ec23114f8eafaed00e
+    ports:
+      - "3310:3310"
+    volumes:
+      - ./:/usr/src/app

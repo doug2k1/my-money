@@ -1,7 +1,7 @@
 {
   "collections": [{
-    "name": "BalanceUpdate",
-    "nameOld": "BalanceUpdate",
+    "name": "balanceUpdates",
+    "nameOld": "balanceUpdates",
     "icon": null,
     "integration": null,
     "isReadOnly": false,
@@ -10,7 +10,7 @@
     "onlyForRelationships": false,
     "paginationType": "page",
     "fields": [{
-      "field": "Investment",
+      "field": "amount",
       "type": "Number",
       "defaultValue": null,
       "enums": null,
@@ -20,28 +20,9 @@
       "isRequired": false,
       "isSortable": true,
       "isVirtual": false,
-      "reference": "Investment.InvestmentId",
-      "inverseOf": null,
-      "relationship": "BelongsTo",
-      "validations": []
-    }, {
-      "field": "amount",
-      "type": "Number",
-      "defaultValue": null,
-      "enums": null,
-      "integration": null,
-      "isFilterable": true,
-      "isReadOnly": false,
-      "isRequired": true,
-      "isSortable": true,
-      "isVirtual": false,
       "reference": null,
       "inverseOf": null,
-      "validations": [{
-        "message": null,
-        "type": "is present",
-        "value": null
-      }]
+      "validations": []
     }, {
       "field": "createdAt",
       "type": "Date",
@@ -58,22 +39,18 @@
       "validations": []
     }, {
       "field": "date",
-      "type": "Dateonly",
+      "type": "Date",
       "defaultValue": null,
       "enums": null,
       "integration": null,
       "isFilterable": true,
       "isReadOnly": false,
-      "isRequired": true,
+      "isRequired": false,
       "isSortable": true,
       "isVirtual": false,
       "reference": null,
       "inverseOf": null,
-      "validations": [{
-        "message": null,
-        "type": "is present",
-        "value": null
-      }]
+      "validations": []
     }, {
       "field": "id",
       "type": "Number",
@@ -87,6 +64,21 @@
       "isVirtual": false,
       "reference": null,
       "inverseOf": null,
+      "validations": []
+    }, {
+      "field": "investment",
+      "type": "Number",
+      "defaultValue": null,
+      "enums": null,
+      "integration": null,
+      "isFilterable": true,
+      "isReadOnly": false,
+      "isRequired": false,
+      "isSortable": true,
+      "isVirtual": false,
+      "reference": "investments.investmentIdKey",
+      "inverseOf": null,
+      "relationship": "BelongsTo",
       "validations": []
     }, {
       "field": "updatedAt",
@@ -106,8 +98,8 @@
     "segments": [],
     "actions": []
   }, {
-    "name": "Broker",
-    "nameOld": "Broker",
+    "name": "brokers",
+    "nameOld": "brokers",
     "icon": null,
     "integration": null,
     "isReadOnly": false,
@@ -116,7 +108,7 @@
     "onlyForRelationships": false,
     "paginationType": "page",
     "fields": [{
-      "field": "Investments",
+      "field": "brokerInvestments",
       "type": ["Number"],
       "defaultValue": null,
       "enums": null,
@@ -126,7 +118,7 @@
       "isRequired": false,
       "isSortable": true,
       "isVirtual": false,
-      "reference": "Investment.BrokerId",
+      "reference": "investments.brokerIdKey",
       "inverseOf": null,
       "relationship": "HasMany",
       "validations": []
@@ -166,16 +158,12 @@
       "integration": null,
       "isFilterable": true,
       "isReadOnly": false,
-      "isRequired": true,
+      "isRequired": false,
       "isSortable": true,
       "isVirtual": false,
       "reference": null,
       "inverseOf": null,
-      "validations": [{
-        "message": null,
-        "type": "is present",
-        "value": null
-      }]
+      "validations": []
     }, {
       "field": "updatedAt",
       "type": "Date",
@@ -194,8 +182,8 @@
     "segments": [],
     "actions": []
   }, {
-    "name": "Investment",
-    "nameOld": "Investment",
+    "name": "investments",
+    "nameOld": "investments",
     "icon": null,
     "integration": null,
     "isReadOnly": false,
@@ -204,22 +192,7 @@
     "onlyForRelationships": false,
     "paginationType": "page",
     "fields": [{
-      "field": "BalanceUpdates",
-      "type": ["Number"],
-      "defaultValue": null,
-      "enums": null,
-      "integration": null,
-      "isFilterable": true,
-      "isReadOnly": false,
-      "isRequired": false,
-      "isSortable": true,
-      "isVirtual": false,
-      "reference": "BalanceUpdate.InvestmentId",
-      "inverseOf": null,
-      "relationship": "HasMany",
-      "validations": []
-    }, {
-      "field": "Broker",
+      "field": "broker",
       "type": "Number",
       "defaultValue": null,
       "enums": null,
@@ -229,24 +202,9 @@
       "isRequired": false,
       "isSortable": true,
       "isVirtual": false,
-      "reference": "Broker.BrokerId",
+      "reference": "brokers.brokerIdKey",
       "inverseOf": null,
       "relationship": "BelongsTo",
-      "validations": []
-    }, {
-      "field": "Transactions",
-      "type": ["Number"],
-      "defaultValue": null,
-      "enums": null,
-      "integration": null,
-      "isFilterable": true,
-      "isReadOnly": false,
-      "isRequired": false,
-      "isSortable": true,
-      "isVirtual": false,
-      "reference": "Transaction.InvestmentId",
-      "inverseOf": null,
-      "relationship": "HasMany",
       "validations": []
     }, {
       "field": "createdAt",
@@ -291,6 +249,36 @@
       "inverseOf": null,
       "validations": []
     }, {
+      "field": "investmentBalanceUpdates",
+      "type": ["Number"],
+      "defaultValue": null,
+      "enums": null,
+      "integration": null,
+      "isFilterable": true,
+      "isReadOnly": false,
+      "isRequired": false,
+      "isSortable": true,
+      "isVirtual": false,
+      "reference": "balanceUpdates.investmentIdKey",
+      "inverseOf": null,
+      "relationship": "HasMany",
+      "validations": []
+    }, {
+      "field": "investmentTransactions",
+      "type": ["Number"],
+      "defaultValue": null,
+      "enums": null,
+      "integration": null,
+      "isFilterable": true,
+      "isReadOnly": false,
+      "isRequired": false,
+      "isSortable": true,
+      "isVirtual": false,
+      "reference": "transactions.investmentIdKey",
+      "inverseOf": null,
+      "relationship": "HasMany",
+      "validations": []
+    }, {
       "field": "name",
       "type": "String",
       "defaultValue": null,
@@ -298,16 +286,12 @@
       "integration": null,
       "isFilterable": true,
       "isReadOnly": false,
-      "isRequired": true,
+      "isRequired": false,
       "isSortable": true,
       "isVirtual": false,
       "reference": null,
       "inverseOf": null,
-      "validations": [{
-        "message": null,
-        "type": "is present",
-        "value": null
-      }]
+      "validations": []
     }, {
       "field": "updatedAt",
       "type": "Date",
@@ -326,8 +310,8 @@
     "segments": [],
     "actions": []
   }, {
-    "name": "Transaction",
-    "nameOld": "Transaction",
+    "name": "sequelizeMeta",
+    "nameOld": "sequelizeMeta",
     "icon": null,
     "integration": null,
     "isReadOnly": false,
@@ -336,7 +320,34 @@
     "onlyForRelationships": false,
     "paginationType": "page",
     "fields": [{
-      "field": "Investment",
+      "field": "name",
+      "type": "String",
+      "defaultValue": null,
+      "enums": null,
+      "integration": null,
+      "isFilterable": true,
+      "isReadOnly": false,
+      "isRequired": false,
+      "isSortable": true,
+      "isVirtual": false,
+      "reference": null,
+      "inverseOf": null,
+      "validations": []
+    }],
+    "segments": [],
+    "actions": []
+  }, {
+    "name": "transactions",
+    "nameOld": "transactions",
+    "icon": null,
+    "integration": null,
+    "isReadOnly": false,
+    "isSearchable": true,
+    "isVirtual": false,
+    "onlyForRelationships": false,
+    "paginationType": "page",
+    "fields": [{
+      "field": "amount",
       "type": "Number",
       "defaultValue": null,
       "enums": null,
@@ -346,28 +357,9 @@
       "isRequired": false,
       "isSortable": true,
       "isVirtual": false,
-      "reference": "Investment.InvestmentId",
-      "inverseOf": null,
-      "relationship": "BelongsTo",
-      "validations": []
-    }, {
-      "field": "amount",
-      "type": "Number",
-      "defaultValue": null,
-      "enums": null,
-      "integration": null,
-      "isFilterable": true,
-      "isReadOnly": false,
-      "isRequired": true,
-      "isSortable": true,
-      "isVirtual": false,
       "reference": null,
       "inverseOf": null,
-      "validations": [{
-        "message": null,
-        "type": "is present",
-        "value": null
-      }]
+      "validations": []
     }, {
       "field": "createdAt",
       "type": "Date",
@@ -384,22 +376,18 @@
       "validations": []
     }, {
       "field": "date",
-      "type": "Dateonly",
+      "type": "Date",
       "defaultValue": null,
       "enums": null,
       "integration": null,
       "isFilterable": true,
       "isReadOnly": false,
-      "isRequired": true,
+      "isRequired": false,
       "isSortable": true,
       "isVirtual": false,
       "reference": null,
       "inverseOf": null,
-      "validations": [{
-        "message": null,
-        "type": "is present",
-        "value": null
-      }]
+      "validations": []
     }, {
       "field": "id",
       "type": "Number",
@@ -413,6 +401,21 @@
       "isVirtual": false,
       "reference": null,
       "inverseOf": null,
+      "validations": []
+    }, {
+      "field": "investment",
+      "type": "Number",
+      "defaultValue": null,
+      "enums": null,
+      "integration": null,
+      "isFilterable": true,
+      "isReadOnly": false,
+      "isRequired": false,
+      "isSortable": true,
+      "isVirtual": false,
+      "reference": "investments.investmentIdKey",
+      "inverseOf": null,
+      "relationship": "BelongsTo",
       "validations": []
     }, {
       "field": "updatedAt",
@@ -435,11 +438,11 @@
   "meta": {
     "database_type": "postgres",
     "liana": "forest-express-sequelize",
-    "liana_version": "6.0.0",
+    "liana_version": "6.2.0",
     "engine": "nodejs",
-    "engine_version": "12.16.1",
+    "engine_version": "12.18.0",
     "framework": "express",
-    "framework_version": "^4.17.1",
-    "orm_version": "5.21.6"
+    "framework_version": "~4.16.3",
+    "orm_version": "5.15.2"
   }
 }
