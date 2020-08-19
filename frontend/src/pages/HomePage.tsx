@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Card from '../components/Card';
+import {
+  LineChart,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Line,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
+
+const chartData = [
+  { date: 1, name: '01/01/2020', value: 100 },
+  { date: 2, name: '01/02/2020', value: 110 },
+  { date: 3, name: '01/03/2020', value: 130 },
+];
 
 const StyledContainer = styled(Grid)`
   padding: ${(props) => props.theme.spacing(2)}px 0;
@@ -12,12 +27,9 @@ const StyledPaper = styled(Paper)`
   padding: ${(props) => props.theme.spacing(2)}px;
 `;
 
-const HomePage: React.FC = () => {
+const HomePage: FC = () => {
   return (
     <StyledContainer container spacing={2}>
-      <Grid item xs={12}>
-        <StyledPaper>aaa</StyledPaper>
-      </Grid>
       <Grid item xs>
         <Card title="Patrimônio" value={3024} />
       </Grid>
@@ -28,7 +40,19 @@ const HomePage: React.FC = () => {
         <Card title="Lucro" value={245} />
       </Grid>
       <Grid item xs={12}>
-        <StyledPaper>aaa</StyledPaper>
+        <StyledPaper>
+          <ResponsiveContainer width="100%" aspect={3}>
+            <LineChart data={chartData}>
+              <XAxis dataKey="date" />
+              <YAxis
+                label={{ value: 'Valor', angle: -90, position: 'insideLeft' }}
+              />
+              <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+              <Line type="monotone" dataKey="value" stroke="#8884d8" />
+              <Tooltip />
+            </LineChart>
+          </ResponsiveContainer>
+        </StyledPaper>
       </Grid>
     </StyledContainer>
   );

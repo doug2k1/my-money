@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {
   StylesProvider,
   createMuiTheme,
   ThemeProvider as MuiThemeProvider,
 } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import { teal, lime } from '@material-ui/core/colors';
 import MainMenu from './components/MainMenu';
 import Page from './components/Page';
+import MainAppBar from './components/MainAppBar';
 
 const theme = createMuiTheme({
   palette: {
@@ -27,11 +23,7 @@ const theme = createMuiTheme({
   },
 });
 
-type Props = {
-  name: string;
-};
-
-const App: React.FC<Props> = ({ name }) => {
+const App: FC = () => {
   const [navOpen, setNavOpen] = useState(false);
 
   const toggleNav = (open: boolean) => () => {
@@ -44,18 +36,7 @@ const App: React.FC<Props> = ({ name }) => {
         <StylesProvider injectFirst>
           <CssBaseline />
           <Router>
-            <AppBar position="static">
-              <Toolbar>
-                <IconButton
-                  edge="start"
-                  color="inherit"
-                  onClick={toggleNav(true)}
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Typography variant="h6">My Money</Typography>
-              </Toolbar>
-            </AppBar>
+            <MainAppBar onMenuClick={toggleNav(true)} />
             <MainMenu open={navOpen} onClose={toggleNav(false)} />
             <Page />
           </Router>

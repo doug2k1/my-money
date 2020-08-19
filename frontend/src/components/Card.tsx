@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
@@ -25,7 +24,7 @@ const StyledPaper = styled(Paper)`
   padding: ${(props) => props.theme.spacing(2)}px;
 `;
 
-const Card: React.FC<Props> = ({ title, value, type = 'currency' }) => {
+const Card: FC<Props> = ({ title, value, type = 'currency' }) => {
   return (
     <StyledPaper>
       <Typography component="h2" variant="h6" color="primary" gutterBottom>

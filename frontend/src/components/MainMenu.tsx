@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
@@ -10,52 +10,75 @@ import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import DescriptionIcon from '@material-ui/icons/Description';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Toolbar from '@material-ui/core/Toolbar';
 
-const StyledDiv = styled('div')`
-  width: 250px;
+const drawerWidth = 256;
+
+const StyledDrawer = styled(Drawer)`
+  width: ${drawerWidth}px;
+
+  .MuiDrawer-paper {
+    width: ${drawerWidth}px;
+  }
 `;
 
 type Props = { open: boolean; onClose: () => void };
 
-const MainMenu: React.FC<Props> = ({ open, onClose }) => {
-  const closeMenu = () => {
+const MainMenu: FC<Props> = ({ open, onClose }) => {
+  const theme = useTheme();
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+  const [selectedIndex, setSelectedIndex] = useState(1);
+
+  const handleListItemClick = (index: number) => {
+    setSelectedIndex(index);
     onClose();
   };
 
   return (
-    <Drawer open={open} onClose={onClose}>
-      <StyledDiv>
-        <Divider />
-        <List>
-          <ListItem button component={RouterLink} to="/" onClick={closeMenu}>
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText primary="Home" />
-          </ListItem>
-          <ListItem
-            button
-            component={RouterLink}
-            to="/investments"
-            onClick={closeMenu}
-          >
-            <ListItemIcon>
-              <DescriptionIcon />
-            </ListItemIcon>
-            <ListItemText primary="Investimentos" />
-          </ListItem>
-        </List>
-        <Divider />
-        <List>
-          <ListItem button component={RouterLink} to="/logout">
-            <ListItemIcon>
-              <MeetingRoomIcon />
-            </ListItemIcon>
-            <ListItemText primary="Sair" />
-          </ListItem>
-        </List>
-      </StyledDiv>
-    </Drawer>
+    <StyledDrawer
+      variant={smDown ? 'temporary' : 'permanent'}
+      open={open}
+      onClose={onClose}
+    >
+      <Toolbar />
+      <List>
+        <ListItem
+          button
+          component={RouterLink}
+          to="/"
+          selected={selectedIndex === 1}
+          onClick={() => handleListItemClick(1)}
+        >
+          <ListItemIcon>
+            <HomeIcon />
+          </ListItemIcon>
+          <ListItemText primary="Home" />
+        </ListItem>
+        <ListItem
+          button
+          component={RouterLink}
+          to="/investments"
+          selected={selectedIndex === 2}
+          onClick={() => handleListItemClick(2)}
+        >
+          <ListItemIcon>
+            <DescriptionIcon />
+          </ListItemIcon>
+          <ListItemText primary="Investimentos" />
+        </ListItem>
+      </List>
+      <Divider />
+      <List>
+        <ListItem button component={RouterLink} to="/logout">
+          <ListItemIcon>
+            <MeetingRoomIcon />
+          </ListItemIcon>
+          <ListItemText primary="Sair" />
+        </ListItem>
+      </List>
+    </StyledDrawer>
   );
 };
 

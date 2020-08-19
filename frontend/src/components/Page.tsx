@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import Container from '@material-ui/core/Container';
 import InvestmentsPage from '../pages/InvestmentsPage';
+import styled from 'styled-components';
 
-const Page: React.FC = () => {
+const StyledMain = styled('main')`
+  ${({ theme }) => `
+    ${theme.breakpoints.up('md')} {
+      margin-left: 256px;
+    }
+  `}
+`;
+
+const Page: FC = () => {
   return (
-    <main>
+    <StyledMain>
       <Container>
         <Switch>
           <Route path="/investments">
@@ -17,7 +26,7 @@ const Page: React.FC = () => {
           </Route>
         </Switch>
       </Container>
-    </main>
+    </StyledMain>
   );
 };
 
