@@ -8,10 +8,15 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TableBody from '@material-ui/core/TableBody';
 
+const currencyFormatter = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL',
+});
+
 const tableData = [
-  { investment: 'Tesouro Selic', broker: 'Easynvest', value: 1000 },
-  { investment: 'Ações ITSA4', broker: 'Clear', value: 750 },
-  { investment: 'Fundo Alaska', broker: 'BTG Pactual', value: 1200 },
+  { id: 1, investment: 'Tesouro Selic', broker: 'Easynvest', value: 1000 },
+  { id: 2, investment: 'Ações ITSA4', broker: 'Clear', value: 750 },
+  { id: 3, investment: 'Fundo Alaska', broker: 'BTG Pactual', value: 1200 },
 ];
 
 const StyledContainer = styled(Grid)`
@@ -31,15 +36,17 @@ const InvestmentsPage: React.FC = () => {
             <TableRow>
               <TableCell>Investimento</TableCell>
               <TableCell>Corretora</TableCell>
-              <TableCell align="right">Valor (R$)</TableCell>
+              <TableCell align="right">Valor</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {tableData.map((row) => (
-              <TableRow>
+              <TableRow key={row.id}>
                 <TableCell>{row.investment}</TableCell>
                 <TableCell>{row.broker}</TableCell>
-                <TableCell align="right">{row.value}</TableCell>
+                <TableCell align="right">
+                  {currencyFormatter.format(row.value)}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

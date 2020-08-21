@@ -13,10 +13,16 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
+const currencyFormatter = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL',
+});
+const dateFormatter = new Intl.DateTimeFormat('pt-BR');
+
 const chartData = [
-  { date: 1, name: '01/01/2020', value: 100 },
-  { date: 2, name: '01/02/2020', value: 110 },
-  { date: 3, name: '01/03/2020', value: 130 },
+  { date: '2020-08-20T21:26:18.695Z', value: 100 },
+  { date: '2020-07-20T21:26:18.695Z', value: 110 },
+  { date: '2020-06-20T21:26:18.695Z', value: 130 },
 ];
 
 const StyledContainer = styled(Grid)`
@@ -41,15 +47,24 @@ const HomePage: FC = () => {
       </Grid>
       <Grid item xs={12}>
         <StyledPaper>
-          <ResponsiveContainer width="100%" aspect={3}>
+          <ResponsiveContainer width="100%" height={400}>
             <LineChart data={chartData}>
-              <XAxis dataKey="date" />
+              <XAxis
+                dataKey="date"
+                tickFormatter={(date) => dateFormatter.format(new Date(date))}
+              />
               <YAxis
-                label={{ value: 'Valor', angle: -90, position: 'insideLeft' }}
+                tickFormatter={(value) => currencyFormatter.format(value)}
+                width={100}
               />
               <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
               <Line type="monotone" dataKey="value" stroke="#8884d8" />
-              <Tooltip />
+              <Tooltip
+                labelFormatter={(date) => dateFormatter.format(new Date(date))}
+                formatter={(value, name, props) => {
+                  return [currencyFormatter.format(value as number), 'Valor'];
+                }}
+              />
             </LineChart>
           </ResponsiveContainer>
         </StyledPaper>
