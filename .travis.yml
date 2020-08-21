@@ -1,13 +1,15 @@
 language: node_js
 node_js:
-  - "9.8.0"
+  - "12.18.1"
 cache:
   directories:
     - "node_modules"
 services:
   - postgresql
+before_install:
+  - cd backend
 before_script:
-  - cp backend/config/database.ci.js backend/config/database.js
+  - cp config/database.ci.js config/database.js
   - psql -c 'create database mymoney_ci_test;' -U postgres
 script:
   - npm run prettier:check
