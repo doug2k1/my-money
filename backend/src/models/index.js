@@ -1,12 +1,6 @@
-'use strict';
-
-const fs = require('fs');
-const path = require('path');
 const Sequelize = require('sequelize');
-const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../../config/database.js')[env];
-const db = {};
 let sequelize;
 
 if (config.use_env_variable) {
@@ -20,24 +14,22 @@ if (config.use_env_variable) {
   );
 }
 
-fs.readdirSync(__dirname)
-  .filter((file) => {
-    return (
-      file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
-    );
-  })
-  .forEach((file) => {
-    var model = sequelize['import'](path.join(__dirname, file));
-    db[model.name] = model;
-  });
+const modelDefiners = [
+  require('./BalanceUpdate'),
+  require('./Broker'),
+  require('./Investment'),
+  require('./Transaction'),
+];
 
-Object.keys(db).forEach((modelName) => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
+// We define all models according to their files.
+modelDefiners.forEach((modelDefiner) => modelDefiner(sequelize));
+
+// We execute any extra setup after the models are defined, such as adding associations.
+Object.values(sequelize.models).forEach((model) => {
+  if (model.associate) {
+    model.associate(sequelize.models);
   }
 });
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
-
-module.exports = db;
+// We export the sequelize connection instance to be used around our app.
+module.exports = sequelize;

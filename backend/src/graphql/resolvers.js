@@ -1,5 +1,10 @@
 const { GraphQLString } = require('graphql');
-const { Broker, Investment, BalanceUpdate, Transaction } = require('../models');
+const {
+  Broker,
+  Investment,
+  BalanceUpdate,
+  Transaction,
+} = require('../models').models;
 
 module.exports = {
   Query: {

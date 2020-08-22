@@ -1,4 +1,4 @@
-const { Broker, Investment } = require('../../src/models');
+const { Broker, Investment } = require('../../src/models').models;
 
 describe('Broker', () => {
   describe('attributes', () => {
@@ -20,7 +20,7 @@ describe('Broker', () => {
       const broker = await Broker.create(
         {
           name: 'Foo',
-          Investments: [{ name: 'A' }, { name: 'B' }]
+          Investments: [{ name: 'A' }, { name: 'B' }],
         },
         { include: [Investment] }
       );

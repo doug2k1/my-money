@@ -2,8 +2,8 @@ const {
   Broker,
   Investment,
   Transaction,
-  BalanceUpdate
-} = require('../../src/models');
+  BalanceUpdate,
+} = require('../../src/models').models;
 
 describe('Investment', () => {
   describe('attributes', () => {
@@ -25,7 +25,7 @@ describe('Investment', () => {
       const investment = await Investment.create(
         {
           name: 'Foo',
-          Broker: { name: 'Broker 1' }
+          Broker: { name: 'Broker 1' },
         },
         { include: [Broker] }
       );
@@ -39,8 +39,8 @@ describe('Investment', () => {
           name: 'Foo',
           Transactions: [
             { amount: 1, date: '2018-01-01' },
-            { amount: 2, date: '2018-01-02' }
-          ]
+            { amount: 2, date: '2018-01-02' },
+          ],
         },
         { include: [Transaction] }
       );
@@ -54,8 +54,8 @@ describe('Investment', () => {
           name: 'Foo',
           BalanceUpdates: [
             { amount: 1, date: '2018-01-01' },
-            { amount: 2, date: '2018-01-02' }
-          ]
+            { amount: 2, date: '2018-01-02' },
+          ],
         },
         { include: [BalanceUpdate] }
       );

@@ -1,11 +1,11 @@
-const { Investment, BalanceUpdate } = require('../../src/models');
+const { Investment, BalanceUpdate } = require('../../src/models').models;
 
 describe('BalanceUpdate', () => {
   describe('attributes', () => {
     it('should have amount and date', async () => {
       const balanceUpdate = await BalanceUpdate.create({
         amount: 1,
-        date: '2018-03-15'
+        date: '2018-03-15',
       });
 
       expect(balanceUpdate.get('amount')).toEqual('1.00');
@@ -31,7 +31,7 @@ describe('BalanceUpdate', () => {
         {
           amount: 1,
           date: '2018-03-15',
-          Investment: { name: 'Inv' }
+          Investment: { name: 'Inv' },
         },
         { include: [Investment] }
       );
