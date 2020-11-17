@@ -1,4 +1,5 @@
 const { GraphQLString } = require('graphql');
+const { Op } = require('sequelize');
 const {
   Broker,
   Investment,
@@ -17,7 +18,43 @@ module.exports = {
     broker: (obj) => Broker.findOne({ where: { id: obj.BrokerId } }),
     balanceUpdates: (obj, args) =>
       BalanceUpdate.findAll({ where: { InvestmentId: obj.id }, ...args }),
-    transactions: (obj) => Transaction.all({ where: { InvestmentId: obj.id } }),
+    transactions: (obj) =>
+      Transaction.findAll({ where: { InvestmentId: obj.id } }),
+    balance: async (obj) => {
+      const lastBalanceUpdate = await BalanceUpdate.findOne({
+        attributes: ['amount', 'date'],
+        where: { InvestmentId: obj.id },
+        order: [['date', 'DESC']],
+      });
+
+      let balance = 0;
+      let startDate = 0;
+
+      if (lastBalanceUpdate) {
+        balance = parseFloat(lastBalanceUpdate.amount);
+        startDate = lastBalanceUpdate.date;
+      }
+
+      const transactionsSum = await Transaction.sum('amount', {
+        where: {
+          InvestmentId: obj.id,
+          date: {
+            [Op.gt]: startDate,
+          },
+        },
+      });
+
+      balance += transactionsSum;
+
+      return balance;
+    },
+    invested: async (obj) => {
+      return Transaction.sum('amount', {
+        where: {
+          InvestmentId: obj.id,
+        },
+      });
+    },
   },
   Broker: {
     investments: (obj) => Investment.findAll({ where: { BrokerId: obj.id } }),

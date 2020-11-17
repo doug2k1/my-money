@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
     'BalanceUpdate',
     {
       amount: { type: DataTypes.DECIMAL(16, 2), allowNull: false },
-      date: { type: DataTypes.DATEONLY, allowNull: false },
+      date: { type: DataTypes.DATE, allowNull: false },
     },
     {}
   );

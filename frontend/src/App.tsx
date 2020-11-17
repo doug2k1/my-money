@@ -1,6 +1,6 @@
 import React, { useState, FC } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import styled, { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {
   StylesProvider,
@@ -35,11 +35,11 @@ const App: FC = () => {
       <ThemeProvider theme={theme}>
         <StylesProvider injectFirst>
           <CssBaseline />
-          <Router>
+          <BrowserRouter>
             <MainAppBar onMenuClick={toggleNav(true)} />
             <MainMenu open={navOpen} onClose={toggleNav(false)} />
             <Page />
-          </Router>
+          </BrowserRouter>
         </StylesProvider>
       </ThemeProvider>
     </MuiThemeProvider>

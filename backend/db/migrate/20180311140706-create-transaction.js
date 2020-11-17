@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       InvestmentId: {
         allowNull: false,
@@ -14,28 +14,28 @@ module.exports = {
         onDelete: 'CASCADE',
         references: {
           model: 'Investments',
-          key: 'id'
-        }
+          key: 'id',
+        },
       },
       amount: {
         allowNull: false,
-        type: Sequelize.DECIMAL(16, 2)
+        type: Sequelize.DECIMAL(16, 2),
       },
       date: {
         allowNull: false,
-        type: Sequelize.DATEONLY
+        type: Sequelize.DATEONLY,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('Transactions');
-  }
+  },
 };

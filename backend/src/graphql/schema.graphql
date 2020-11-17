@@ -19,6 +19,8 @@ type Investment {
   broker: Broker
   balanceUpdates(limit: Int, order: [[String]]): [BalanceUpdate]
   transactions: [Transaction]
+  balance: Float!
+  invested: Float!
 }
 
 type BalanceUpdate {
