@@ -5,17 +5,21 @@ describe('BalanceUpdate', () => {
     it('should have amount and date', async () => {
       const balanceUpdate = await BalanceUpdate.create({
         amount: 1,
-        date: '2018-03-15',
+        date: '2018-03-15T00:00:00.000Z',
       });
 
       expect(balanceUpdate.get('amount')).toEqual('1.00');
-      expect(balanceUpdate.get('date')).toEqual('2018-03-15');
+      expect(balanceUpdate.get('date').toISOString()).toEqual(
+        '2018-03-15T00:00:00.000Z'
+      );
     });
   });
 
   describe('validations', () => {
     it('should validate amount', async () => {
-      const balanceUpdate = BalanceUpdate.build({ date: '2018-03-15' });
+      const balanceUpdate = BalanceUpdate.build({
+        date: '2018-03-15T00:00:00.000Z',
+      });
       await expect(balanceUpdate.validate()).rejects.toThrow();
     });
 
@@ -30,7 +34,7 @@ describe('BalanceUpdate', () => {
       const balanceUpdate = await BalanceUpdate.create(
         {
           amount: 1,
-          date: '2018-03-15',
+          date: '2018-03-15T00:00:00.000Z',
           Investment: { name: 'Inv' },
         },
         { include: [Investment] }

@@ -9,13 +9,17 @@ describe('Transaction', () => {
       });
 
       expect(transaction.get('amount')).toEqual('1.00');
-      expect(transaction.get('date')).toEqual('2018-03-15');
+      expect(transaction.get('date').toISOString()).toEqual(
+        '2018-03-15T00:00:00.000Z'
+      );
     });
   });
 
   describe('validations', () => {
     it('should validate amount', async () => {
-      const transaction = Transaction.build({ date: '2018-03-15' });
+      const transaction = Transaction.build({
+        date: '2018-03-15T00:00:00.000Z',
+      });
       await expect(transaction.validate()).rejects.toThrow();
     });
 
@@ -30,7 +34,7 @@ describe('Transaction', () => {
       const transaction = await Transaction.create(
         {
           amount: 1,
-          date: '2018-03-15',
+          date: '2018-03-15T00:00:00.000Z',
           Investment: { name: 'Inv' },
         },
         { include: [Investment] }

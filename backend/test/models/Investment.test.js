@@ -38,8 +38,8 @@ describe('Investment', () => {
         {
           name: 'Foo',
           Transactions: [
-            { amount: 1, date: '2018-01-01' },
-            { amount: 2, date: '2018-01-02' },
+            { amount: 1, date: '2018-01-01T00:00:00.000Z' },
+            { amount: 2, date: '2018-01-02T00:00:00.000Z' },
           ],
         },
         { include: [Transaction] }
@@ -53,8 +53,8 @@ describe('Investment', () => {
         {
           name: 'Foo',
           BalanceUpdates: [
-            { amount: 1, date: '2018-01-01' },
-            { amount: 2, date: '2018-01-02' },
+            { amount: 1, date: '2018-01-01T00:00:00.000Z' },
+            { amount: 2, date: '2018-01-02T00:00:00.000Z' },
           ],
         },
         { include: [BalanceUpdate] }
