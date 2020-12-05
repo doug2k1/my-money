@@ -29,7 +29,7 @@ const HomePage: FC = () => {
   }>(balancesQuery);
 
   if (loading) {
-    return <p>Loading</p>;
+    return <p>Carregando...</p>;
   }
 
   if (error) {

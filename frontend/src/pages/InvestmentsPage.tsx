@@ -43,7 +43,7 @@ const StyledPaper = styled(Paper)`
 `;
 
 const InvestmentsPage: React.FC = () => {
-  const { loading, data } = useQuery<{
+  const { loading, data, error } = useQuery<{
     investments: {
       id: number;
       name: string;
@@ -52,6 +52,14 @@ const InvestmentsPage: React.FC = () => {
       broker: { name: string };
     }[];
   }>(investmentsQuery);
+
+  if (loading) {
+    return <p>Carregando...</p>;
+  }
+
+  if (error) {
+    return <p>{error.toString()}</p>;
+  }
 
   return (
     <StyledContainer>
