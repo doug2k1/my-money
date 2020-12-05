@@ -10,7 +10,7 @@ module.exports = (env) => ({
   output: {
     path: path.resolve('dist'),
     filename: '[name].[hash].js',
-    publicPath: '/',
+    publicPath: '/app',
   },
 
   resolve: {
@@ -42,6 +42,8 @@ module.exports = (env) => ({
   ],
 
   devServer: {
+    port: 5001,
     historyApiFallback: true,
+    publicPath: '/app',
   },
 });

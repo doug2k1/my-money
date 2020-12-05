@@ -15,7 +15,7 @@ const setup = (app) => {
     },
   });
 
-  app.use(path, authMiddleware);
+  app.use(path, authMiddleware());
   server.applyMiddleware({ app, path });
 };
 

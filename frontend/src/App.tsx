@@ -7,7 +7,7 @@ import {
   createMuiTheme,
   ThemeProvider as MuiThemeProvider,
 } from '@material-ui/core/styles';
-import { teal, lime } from '@material-ui/core/colors';
+import { blue, green } from '@material-ui/core/colors';
 import MainMenu from './components/MainMenu';
 import Page from './components/Page';
 import MainAppBar from './components/MainAppBar';
@@ -15,10 +15,10 @@ import MainAppBar from './components/MainAppBar';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: teal[500],
+      main: blue[600],
     },
     secondary: {
-      main: lime[500],
+      main: green[600],
     },
   },
 });

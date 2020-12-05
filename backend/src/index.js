@@ -1,14 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const setupAuth = require('./setupAuth');
 const setupGraphQL = require('./setupGraphQL');
+const authMiddleware = require('./middleware/authMiddleware');
 
 const app = express();
-
-// view engine
-app.set('view engine', 'ejs');
-app.set('views', './src/views');
 
 // session
 app.use(
@@ -30,10 +28,19 @@ app.use(express.static('public'));
 
 // routes
 app.get('/', (req, res) => {
-  res.render('index', {
-    user: req.user,
-  });
+  if (req.isAuthenticated()) {
+    res.redirect('/app');
+  } else {
+    res.redirect('/login');
+  }
 });
+
+// proxy
+app.use(
+  '/app',
+  authMiddleware({ redirect: true }),
+  createProxyMiddleware({ target: 'http://localhost:5001', changeOrigin: true })
+);
 
 // start server
 const port = process.env.PORT || 5000;

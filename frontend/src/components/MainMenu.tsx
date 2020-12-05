@@ -71,7 +71,7 @@ const MainMenu: FC<Props> = ({ open, onClose }) => {
       </List>
       <Divider />
       <List>
-        <ListItem button component={RouterLink} to="/logout">
+        <ListItem button component="a" href="/auth/logout">
           <ListItemIcon>
             <MeetingRoomIcon />
           </ListItemIcon>
