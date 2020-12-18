@@ -1,5 +1,5 @@
-import { gql, useQuery } from '@apollo/client';
 import React, { FC } from 'react';
+import { gql, useQuery } from '@apollo/client';
 import {
   CartesianGrid,
   Legend,

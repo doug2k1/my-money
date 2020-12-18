@@ -1,10 +1,11 @@
 module.exports = {
   root: true,
-  parser: "babel-eslint",
-  extends: ["react-app", "prettier"],
+  parser: '@typescript-eslint/parser',
+  extends: ['react-app', 'prettier'],
+  plugins: ['@typescript-eslint'],
   rules: {
-    "react/self-closing-comp": [
-      "error",
+    'react/self-closing-comp': [
+      'error',
       {
         component: true,
         html: true,
