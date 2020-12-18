@@ -6,12 +6,21 @@ cache:
     - "node_modules"
 services:
   - postgresql
-before_install:
-  - cd backend
-before_script:
-  - cp config/database.ci.js config/database.js
-  - psql -c 'create database mymoney_ci_test;' -U postgres
-script:
-  - npm run prettier:check
-  - npm run lint
-  - npm run test
+
+jobs:
+  include:
+    - before_install:
+        - cd backend
+      before_script:
+        - cp config/database.ci.js config/database.js
+        - psql -c 'create database mymoney_ci_test;' -U postgres
+      script:
+        - npm run prettier:check
+        - npm run lint
+        - npm run test
+    - before_install:
+        - cd frontend
+      script:
+        - npm run prettier:check
+        - npm run lint
+        - npm run test
