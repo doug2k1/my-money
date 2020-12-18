@@ -7,6 +7,7 @@ interface Props {
   title: string;
   value: number;
   type?: 'percent' | 'currency';
+  'data-testid'?: string;
 }
 
 const formatters = {
@@ -24,9 +25,14 @@ const StyledPaper = styled(Paper)`
   padding: ${(props) => props.theme.spacing(2)}px;
 `;
 
-const Card: FC<Props> = ({ title, value, type = 'currency' }) => {
+const Card: FC<Props> = ({
+  title,
+  value,
+  'data-testid': dataTestId,
+  type = 'currency',
+}) => {
   return (
-    <StyledPaper>
+    <StyledPaper data-testid={dataTestId}>
       <Typography component="h2" variant="h6" color="primary" gutterBottom>
         {title}
       </Typography>

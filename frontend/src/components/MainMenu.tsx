@@ -41,6 +41,7 @@ const MainMenu: FC<Props> = ({ open, onClose }) => {
       variant={smDown ? 'temporary' : 'permanent'}
       open={open}
       onClose={onClose}
+      data-testid="main-menu"
     >
       <Toolbar />
       <List>

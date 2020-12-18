@@ -19,10 +19,14 @@ const Page: FC = () => {
       <Container>
         <Switch>
           <Route path="/investments">
-            <InvestmentsPage />
+            <div data-testid="investments-page">
+              <InvestmentsPage />
+            </div>
           </Route>
           <Route path="/">
-            <HomePage />
+            <div data-testid="home-page">
+              <HomePage />
+            </div>
           </Route>
         </Switch>
       </Container>

@@ -12,7 +12,7 @@ import {
 } from 'recharts';
 
 const investmentsQuery = gql`
-  query {
+  query ChartQuery {
     investments {
       id
       name
@@ -80,39 +80,41 @@ const Chart: FC = () => {
   const chartData = buildChartData(data);
 
   return (
-    <ResponsiveContainer width="100%" height={400}>
-      <LineChart>
-        <XAxis
-          dataKey="date"
-          type="number"
-          tickFormatter={(date) => dateFormatter.format(new Date(date))}
-          domain={['dataMin', 'dataMax']}
-        />
-        <YAxis
-          tickFormatter={(value) => currencyFormatter.format(value)}
-          width={100}
-        />
-        <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
-        {chartData.map((series) => (
-          <Line
-            key={series.id}
-            type="monotone"
-            data={series.data}
-            dataKey="value"
-            name={series.name}
-            stroke={selectColor(series.id)}
+    <div data-testid="chart">
+      <ResponsiveContainer width="100%" height={400}>
+        <LineChart>
+          <XAxis
+            dataKey="date"
+            type="number"
+            tickFormatter={(date) => dateFormatter.format(new Date(date))}
+            domain={['dataMin', 'dataMax']}
           />
-        ))}
+          <YAxis
+            tickFormatter={(value) => currencyFormatter.format(value)}
+            width={100}
+          />
+          <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+          {chartData.map((series) => (
+            <Line
+              key={series.id}
+              type="monotone"
+              data={series.data}
+              dataKey="value"
+              name={series.name}
+              stroke={selectColor(series.id)}
+            />
+          ))}
 
-        <Tooltip
-          labelFormatter={(date) => dateFormatter.format(new Date(date))}
-          formatter={(value, name) => {
-            return [currencyFormatter.format(value as number), name];
-          }}
-        />
-        <Legend />
-      </LineChart>
-    </ResponsiveContainer>
+          <Tooltip
+            labelFormatter={(date) => dateFormatter.format(new Date(date))}
+            formatter={(value, name) => {
+              return [currencyFormatter.format(value as number), name];
+            }}
+          />
+          <Legend />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
 

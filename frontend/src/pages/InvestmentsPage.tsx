@@ -14,14 +14,8 @@ const currencyFormatter = new Intl.NumberFormat('pt-BR', {
   currency: 'BRL',
 });
 
-const tableData = [
-  { id: 1, investment: 'Tesouro Selic', broker: 'Easynvest', value: 1000 },
-  { id: 2, investment: 'Ações ITSA4', broker: 'Clear', value: 750 },
-  { id: 3, investment: 'Fundo Alaska', broker: 'BTG Pactual', value: 1200 },
-];
-
 const investmentsQuery = gql`
-  query {
+  query InvestmentsPageQuery {
     investments {
       id
       name
@@ -58,7 +52,7 @@ const InvestmentsPage: React.FC = () => {
   }
 
   if (error) {
-    return <p>{error.toString()}</p>;
+    return <p data-testid="error">{error.toString()}</p>;
   }
 
   return (
@@ -74,8 +68,8 @@ const InvestmentsPage: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data?.investments.map((investment) => (
-              <TableRow key={investment.id}>
+            {data?.investments.map((investment, index) => (
+              <TableRow key={investment.id} data-testid={`row-${index}`}>
                 <TableCell>{investment.name}</TableCell>
                 <TableCell>{investment.broker.name}</TableCell>
                 <TableCell align="right">
