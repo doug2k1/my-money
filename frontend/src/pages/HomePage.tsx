@@ -6,7 +6,7 @@ import Card from '../components/Card';
 import { gql, useQuery } from '@apollo/client';
 import Chart from '../components/Chart';
 
-const HOME_PAGE_QUERY = gql`
+const balancesQuery = gql`
   query HomePageQuery {
     investments {
       balance
@@ -26,7 +26,7 @@ const StyledPaper = styled(Paper)`
 const HomePage: FC = () => {
   const { loading, data, error } = useQuery<{
     investments: { balance: number; invested: number }[];
-  }>(HOME_PAGE_QUERY);
+  }>(balancesQuery);
 
   if (loading) {
     return <p>Carregando...</p>;
