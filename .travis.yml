@@ -22,5 +22,6 @@ jobs:
         - cd frontend
       script:
         - npm run prettier:check
+        - npm run check-types
         - npm run lint
         - npm run test

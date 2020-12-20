@@ -7,7 +7,7 @@ import {
   HttpLink,
   InMemoryCache,
 } from '@apollo/client';
-import fetch from 'node-fetch';
+import fetch from 'cross-fetch';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../theme';
 import { MuiThemeProvider } from '@material-ui/core';
@@ -27,7 +27,7 @@ const link = new HttpLink({
 
   // Use explicit `window.fetch` so that outgoing requests
   // are captured and deferred until the Service Worker is ready.
-  fetch: (...args) => fetch(...args),
+  fetch,
 });
 
 const client = new ApolloClient({
