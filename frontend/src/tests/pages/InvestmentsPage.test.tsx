@@ -1,7 +1,6 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
 import { graphql } from 'msw';
-import { render } from '../utils';
+import { render, screen } from '../utils';
 import { server } from '../server';
 import InvestmentsPage from '../../pages/InvestmentsPage';
 

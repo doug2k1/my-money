@@ -3,7 +3,6 @@ import { render } from '@testing-library/react';
 import {
   ApolloClient,
   ApolloProvider,
-  DefaultOptions,
   HttpLink,
   InMemoryCache,
 } from '@apollo/client';
@@ -12,28 +11,22 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from '../theme';
 import { MuiThemeProvider } from '@material-ui/core';
 
-const defaultOptions: DefaultOptions = {
-  watchQuery: {
-    fetchPolicy: 'no-cache',
-    errorPolicy: 'ignore',
-  },
-  query: {
-    fetchPolicy: 'no-cache',
-    errorPolicy: 'all',
-  },
-};
-const link = new HttpLink({
-  uri: 'http://localhost:5000/graphql',
-
-  // Use explicit `window.fetch` so that outgoing requests
-  // are captured and deferred until the Service Worker is ready.
-  fetch,
-});
-
 const client = new ApolloClient({
-  link,
+  link: new HttpLink({
+    uri: 'http://localhost:5000/graphql',
+    fetch,
+  }),
   cache: new InMemoryCache(),
-  defaultOptions,
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'ignore',
+    },
+    query: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all',
+    },
+  },
 });
 
 const Providers = ({ children }: PropsWithChildren<{}>) => {

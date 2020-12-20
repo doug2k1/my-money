@@ -1,7 +1,6 @@
 import React from 'react';
-import { fireEvent, screen } from '@testing-library/react';
 import App from '../App';
-import { render } from './utils';
+import { render, fireEvent, screen } from './utils';
 
 describe('App', () => {
   it('shows the home page by default', () => {
