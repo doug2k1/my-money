@@ -4,7 +4,8 @@
   "description": "Investments dashboard app",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index",
+    "start": "node src/index",
+    "dev": "nodemon src/index",
     "test": "cross-env NODE_ENV=test jest",
     "test:coverage": "npm run test -- --coverage",
     "prettier": "prettier \"./src/**/*.js\"",
