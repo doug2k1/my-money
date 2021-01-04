@@ -1,22 +1,12 @@
 {
-  "name": "mvp",
+  "name": "my-money",
   "version": "1.0.0",
-  "description": "[![Build Status](https://travis-ci.org/doug2k1/my-money.svg?branch=master)](https://travis-ci.org/doug2k1/my-money)",
-  "main": "index.js",
   "scripts": {
     "prebuild": "npm ci --prefix backend && npm ci --prefix frontend",
     "build": "npm run build --prefix frontend",
     "start": "npm start --prefix backend"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/doug2k1/my-money.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/doug2k1/my-money/issues"
-  },
-  "homepage": "https://github.com/doug2k1/my-money#readme"
+  "engines": {
+    "node": "14.x.x"
+  }
 }
