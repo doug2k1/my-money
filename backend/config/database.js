@@ -7,7 +7,7 @@ module.exports = {
     database: 'mymoney',
     host: '127.0.0.1',
     dialect: 'postgres',
-    operatorsAliases: Sequelize.Op
+    operatorsAliases: Sequelize.Op,
   },
   test: {
     username: 'mymoney',
@@ -16,7 +16,9 @@ module.exports = {
     host: '127.0.0.1',
     dialect: 'postgres',
     logging: false,
-    operatorsAliases: Sequelize.Op
+    operatorsAliases: Sequelize.Op,
   },
-  production: {}
+  production: {
+    use_env_variable: 'DATABASE_URL',
+  },
 };
