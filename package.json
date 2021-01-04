@@ -2,7 +2,7 @@
   "name": "my-money",
   "version": "1.0.0",
   "scripts": {
-    "prebuild": "npm ci --prefix backend && npm ci --prefix frontend",
+    "prebuild": "npm ci --prefix backend && npm ci --dev --prefix frontend",
     "build": "npm run build --prefix frontend",
     "start": "npm start --prefix backend"
   },
