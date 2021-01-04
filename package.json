@@ -4,7 +4,7 @@
   "description": "[![Build Status](https://travis-ci.org/doug2k1/my-money.svg?branch=master)](https://travis-ci.org/doug2k1/my-money)",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npm install --prefix backend && npm install --prefix frontend",
+    "prebuild": "npm install --prefix backend && npm install --prefix frontend",
     "build": "npm run build --prefix frontend",
     "start": "npm start --prefix backend"
   },
