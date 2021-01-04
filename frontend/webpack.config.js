@@ -8,7 +8,7 @@ module.exports = (env) => ({
   entry: './src/index',
 
   output: {
-    path: path.resolve('dist'),
+    path: path.resolve('../backend/public/app'),
     filename: '[name].[hash].js',
     publicPath: '/app',
   },

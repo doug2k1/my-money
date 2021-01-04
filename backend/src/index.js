@@ -35,12 +35,17 @@ app.get('/', (req, res) => {
   }
 });
 
-// proxy
-app.use(
-  '/app',
-  authMiddleware({ redirect: true }),
-  createProxyMiddleware({ target: 'http://localhost:5001', changeOrigin: true })
-);
+// proxy (only for development)
+if (!process.env.PRODUCTION) {
+  app.use(
+    '/app',
+    authMiddleware({ redirect: true }),
+    createProxyMiddleware({
+      target: 'http://localhost:5001',
+      changeOrigin: true,
+    })
+  );
+}
 
 // start server
 const port = process.env.PORT || 5000;
