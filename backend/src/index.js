@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 });
 
 // proxy (only for development)
-if (!process.env.PRODUCTION) {
+if (process.env.NODE_ENV !== 'production') {
   app.use(
     '/app',
     authMiddleware({ redirect: true }),
