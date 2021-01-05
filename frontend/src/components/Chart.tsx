@@ -73,7 +73,7 @@ const dateFormatter = new Intl.DateTimeFormat('pt-BR');
 const Chart: FC = () => {
   const { data } = useQuery<QueryData>(investmentsQuery);
 
-  if (!data || data.investments.length === 0) {
+  if (!data) {
     return null;
   }
 

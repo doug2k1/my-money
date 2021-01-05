@@ -44,7 +44,7 @@ const HomePage: FC = () => {
     0
   );
   const profit = totalBalance - totalInvested;
-  const profitMargin = profit / totalInvested;
+  const profitMargin = totalInvested > 0 ? profit / totalInvested : 0;
 
   return (
     <StyledContainer container spacing={2}>
@@ -66,11 +66,13 @@ const HomePage: FC = () => {
       <Grid item xs>
         <Card title="Lucro" value={profit} data-testid="card-profit" />
       </Grid>
-      <Grid item xs={12}>
-        <StyledPaper>
-          <Chart />
-        </StyledPaper>
-      </Grid>
+      {investments.length > 0 ? (
+        <Grid item xs={12}>
+          <StyledPaper>
+            <Chart />
+          </StyledPaper>
+        </Grid>
+      ) : null}
     </StyledContainer>
   );
 };

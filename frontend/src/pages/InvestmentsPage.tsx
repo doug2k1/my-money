@@ -55,6 +55,10 @@ const InvestmentsPage: React.FC = () => {
     return <p data-testid="error">{error.toString()}</p>;
   }
 
+  if (!data || data.investments.length === 0) {
+    return <p>Nenhum investimento cadastrado</p>;
+  }
+
   return (
     <StyledContainer>
       <StyledPaper>
