@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const dotenv = require('dotenv');
 const webpack = require('webpack');
 
-const envVars = dotenv.config().parsed || process.env;
+const envVars = dotenv.config().parsed;
 
 module.exports = (env) => ({
   mode: env === 'prod' ? 'production' : 'development',
@@ -44,7 +44,9 @@ module.exports = (env) => ({
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({ template: 'index.html' }),
     new webpack.DefinePlugin({
-      'process.env.API_URL': JSON.stringify(envVars.API_URL),
+      'process.env.API_URL': JSON.stringify(
+        (envVars && envVars.API_URL) || process.env.API_URL
+      ),
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),
   ],
