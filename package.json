@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "prebuild": "npm ci --prefix backend && npm ci --dev --prefix frontend",
-    "build": "npm run build --prefix frontend",
+    "build": "npm run build --prefix frontend && npm run db:migrate --prefix backend",
     "start": "npm start --prefix backend"
   },
   "engines": {

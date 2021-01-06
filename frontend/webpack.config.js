@@ -45,7 +45,7 @@ module.exports = (env) => ({
     new HtmlWebpackPlugin({ template: 'index.html' }),
     new webpack.DefinePlugin({
       'process.env.API_URL': JSON.stringify(
-        (envVars && envVars.API_URL) || process.env.API_URL
+        process.env.API_URL || (envVars && envVars.API_URL)
       ),
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),

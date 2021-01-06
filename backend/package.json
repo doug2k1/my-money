@@ -12,7 +12,8 @@
     "prettier:check": "npm run prettier -- -l",
     "prettier:write": "npm run prettier -- --write",
     "lint": "eslint \"./src/**/*.js\"",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "db:migrate": "npx sequelize-cli db:migrate"
   },
   "repository": {
     "type": "git",
